@@ -10,8 +10,8 @@ public class TreeUtils {
 	 * @param size of array to create
 	 * @return the array, initialised and populated with random values.
 	 */
-	public static int[] generateArray(int size) {
-		int[] array = new int[size];
+	public static Object[] generateArray(int size) {
+		Object[] array = new Object[size];
 		Random random = new Random();
 		
 		for (int i = 0; i < array.length; i++) {
@@ -27,7 +27,7 @@ public class TreeUtils {
 	 * Print the given array as a tree.
 	 * @param array
 	 */
-	public static void print(int[] array) {
+	public static void print(Object[] array) {
 		int i = 0;
 		int rowCount = 1;
 		int indent = array.length;
@@ -39,7 +39,7 @@ public class TreeUtils {
 				System.out.print("  ");
 			}
 			
-			for (int j = rowCount; j > 0; j--) {
+			for (int j = rowCount; j > 0 && i < array.length; j--) {
 				
 				System.out.print(array[i++]);
 				
@@ -61,7 +61,7 @@ public class TreeUtils {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int[] array = generateArray(7);
+		Object[] array = generateArray(7);
 		
 		print(array);
 
