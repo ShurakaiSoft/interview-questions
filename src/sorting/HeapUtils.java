@@ -1,17 +1,14 @@
 package sorting;
 
-import static org.junit.Assert.assertTrue;
-
 public class HeapUtils {
 
 	public static int[] heapSort(int[] array, boolean ascendingOrder) {
-		if (array == null || array.length < 2) {
-			return array;
-		}
-		heapArray(array, !ascendingOrder);
-		for (int i = array.length - 1; i >= 0; i--) {
-			Utils.swap(array, i, 0);
-			heapify(array, i, 0, !ascendingOrder);
+		if (array != null && array.length > 1) {
+			heapArray(array, !ascendingOrder);
+			for (int i = array.length - 1; i >= 0; i--) {
+				Utils.swap(array, i, 0);
+				heapify(array, i, 0, !ascendingOrder);
+			}
 		}
 		return array;
 	}
@@ -24,18 +21,12 @@ public class HeapUtils {
 	}
 	
 	public static void heapify(int[] array, int arraySize, int parentIndex, boolean minHeap) {
-		int leftChildIndex = parentIndex * 2 + 1;
-		int rightChildIndex = leftChildIndex + 1;
-		int maxChildIndex;
-		if (leftChildIndex < arraySize) {
-			maxChildIndex = leftChildIndex;
-		} else {
+		int maxChildIndex = parentIndex * 2 + 1;
+		if (maxChildIndex >= arraySize) {
 			return;
 		}
-		if (rightChildIndex < arraySize) {
-			if (Utils.compareOrder(array[rightChildIndex], array[maxChildIndex], minHeap)) {
-				maxChildIndex = rightChildIndex;
-			}
+		if (maxChildIndex + 1 < arraySize && Utils.compareOrder(array[maxChildIndex + 1], array[maxChildIndex], minHeap)) {
+			maxChildIndex++;
 		}
 		if (Utils.compareOrder(array[maxChildIndex], array[parentIndex], minHeap)) {
 			Utils.swap(array, maxChildIndex, parentIndex);
@@ -80,6 +71,11 @@ public class HeapUtils {
 	}
 
 	
+	/**
+	 * visual test
+	 * 
+	 * @param argv
+	 */
 	public static void main(String[] argv) {
 		int array[] = { 3, 7, 2, 4, 9, 1, 5, 6 };
 		
