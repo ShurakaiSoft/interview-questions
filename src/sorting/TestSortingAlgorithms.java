@@ -69,6 +69,24 @@ public class TestSortingAlgorithms {
 		
 	}
 	
+	@Test
+	public void testHeapSort() {
+		assertTrue(SortingAlgorithms.heapSortAscending(null) == null);
+		int[] array = new int[1];
+		SortingAlgorithms.heapSortDescending(array);
+		array[0] = 1;
+		SortingAlgorithms.heapSortDescending(array);
+		array = Utils.createRandomArray(100);
+		assertTrue(Utils.isDescendingSorted(array) == false);
+		SortingAlgorithms.heapSortDescending(array);
+		assertTrue(Utils.isDescendingSorted(array));
+		array = Utils.createRandomArray(100);
+		assertTrue(Utils.isAscendingSorted(array) == false);
+		SortingAlgorithms.heapSortAscending(array);
+		assertTrue(Utils.isAscendingSorted(array));
+		
+	}
+	
 	
 	
 }

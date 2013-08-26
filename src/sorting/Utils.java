@@ -92,6 +92,25 @@ public class Utils {
 		array[a] = array[b];
 		array[b] = temp;
 	}
+
+	/**
+	 * Compares a relative to b with respect to ascendingOrder. If ascending
+	 * order is true and a is less than b it return true or if ascendingOrder
+	 * is false and a is greater than b it returns true. Otherwise it returns
+	 * false.
+	 * 
+	 * @param a lhs argument
+	 * @param b rhs argument
+	 * @param ascendingOrder true uses less than [<], false uses greater than [>]. 
+	 * @return true when argument a and b match ascendingOrder flag.
+	 */
+	public static boolean compareOrder(int a, int b, boolean ascendingOrder) {
+		if (ascendingOrder) {
+			return a < b;
+		} else {
+			return a > b;
+		}
+	}
 	
 	
 	public static int[] createRandomArray(int size) {

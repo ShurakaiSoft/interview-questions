@@ -11,7 +11,7 @@ public class SortingAlgorithms {
 			minValue = array[i];
 			minIndex = i;
 			for (int j = i + 1; j < array.length; j++) {
-				if (compareOrder(minValue, array[j], ascendingOrder) == false) {
+				if (Utils.compareOrder(minValue, array[j], ascendingOrder) == false) {
 					minValue = array[j];
 					minIndex = j;
 				}
@@ -31,14 +31,13 @@ public class SortingAlgorithms {
 		return selectionSort(array, false);
 	}
 
-	
 	public static int[] insertionSort(int[] array, boolean ascendingOrder) {
 		if (array == null || array.length < 2) {
 			return array;
 		}
 		for (int i = 1; i < array.length; i++) {
 			for (int j = i; j >= 1; j--) {
-				if (compareOrder(array[j], array[j - 1], ascendingOrder)) {
+				if (Utils.compareOrder(array[j], array[j - 1], ascendingOrder)) {
 					Utils.swap(array, j, j - 1);
 				} else {
 					break;
@@ -62,7 +61,7 @@ public class SortingAlgorithms {
 		}
 		for (int i = 1; i < array.length; i++) {
 			for (int j = 0; j < array.length - i; j++) {
-				if (compareOrder(array[j], array[j + 1], ascendingOrder) == false) {
+				if (Utils.compareOrder(array[j], array[j + 1], ascendingOrder) == false) {
 					Utils.swap(array, j, j + 1);
 				}
 			}
@@ -78,13 +77,13 @@ public class SortingAlgorithms {
 		return bubbleSort(array, false);
 	}
 	
-	private static boolean compareOrder(int a, int b, boolean asc) {
-		if (asc) {
-			return a < b;
-		} else {
-			return a > b;
-		}
+	public static int[] heapSortAscending(int[] array) {
+		return HeapUtils.heapSort(array, true);
 	}
+	public static int[] heapSortDescending(int[] array) {
+		return HeapUtils.heapSort(array, false);
+	}
+
 	
 	/**
 	 * @param args

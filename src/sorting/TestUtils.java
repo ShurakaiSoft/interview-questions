@@ -97,4 +97,14 @@ public class TestUtils {
 		assertTrue(Utils.isAscendingSorted(randomArray) == false);
 	}
 	
+	
+	@Test
+	public void testCompareOrder() {
+		assertTrue(Utils.compareOrder(1, 2, true));
+		assertTrue(Utils.compareOrder(3, 2, true) == false);
+		assertTrue(Utils.compareOrder(4, 2, false));
+		assertTrue(Utils.compareOrder(5, 7, false) == false);
+	}
+	
+	
 }
