@@ -3,40 +3,42 @@ package sorting;
 public class QuickSort {
 
 	public static int[] sort(int[] array, boolean ascendingOrder) {
-		if (array != null) {
-			sortPartition(array, 0, array.length - 1, ascendingOrder);
+		if (array != null && array.length > 1) {
+			quickSort(array, 0, array.length - 1, ascendingOrder);
 		}
 		return array;
 	}
 	
-	public static void sortPartition(int[] array, int startIndex, int endIndex, boolean ascendingOrder) {
-		if (array != null && (endIndex - startIndex) > 1) {
-			int pivot = chooseRandomPivotValue(array, startIndex, endIndex);
-			int i = startIndex;
-			int j = endIndex;
-			
-			while (true) {
-				while (Utils.compareOrder(array[i], pivot, ascendingOrder) && i < j) {
-					i++;
-				}
-				while (Utils.compareOrder(array[j], pivot, !ascendingOrder) && i < j) {
-					j--;
-				}
-				if (i == j) {
-					sortPartition(array, startIndex, i--, ascendingOrder);
-					sortPartition(array, j++, endIndex, ascendingOrder);
-					return;
-				} else {
-					Utils.swap(array, i, j);
-				}
-			}
+	private static void quickSort(int[] array, int startIndex, int endIndex, boolean ascendingOrder) {
+		
+		if (startIndex < endIndex) {
+			int pivotIndex = getRandomPivotIndex(startIndex, endIndex);
+			pivotIndex = partition(array, startIndex, pivotIndex, endIndex, ascendingOrder);
+			quickSort(array, startIndex, pivotIndex - 1, ascendingOrder);
+			quickSort(array, pivotIndex + 1, endIndex, ascendingOrder);
 		}
 	}
 	
-	private static int chooseRandomPivotValue(int[] array, int startIndex, int endIndex) {
-		return array[startIndex + ((int) Math.floor(Math.random() * (endIndex - startIndex)))];
+	
+	private static int partition(int[] array, int startIndex, int pivotIndex, int endIndex, boolean ascendingOrder) {
+		int pivot = array[pivotIndex];
+		
+		Utils.swap(array, pivotIndex, endIndex);
+		int storeIndex = startIndex;
+		for (int i = startIndex; i < endIndex; i++) {
+			if (Utils.compareOrder(array[i], pivot, ascendingOrder)) {
+				Utils.swap(array,  i, storeIndex);
+				storeIndex++;
+			}
+		}
+		Utils.swap(array, storeIndex, endIndex);
+		return storeIndex;
 	}
 	
+	
+	private static int getRandomPivotIndex(int startIndex, int endIndex) {
+		return startIndex + ((int) Math.floor(Math.random() * (endIndex - startIndex)));
+	}
 	
 	private static void printArray(String msg, int[] array, int startIndex, int endIndex, int pivot) {
 		System.out.format("%s %d %d %d: ", msg, startIndex, endIndex, pivot);
@@ -52,7 +54,9 @@ public class QuickSort {
 	public static void main(String[] args) {
 		int[] array = Utils.createRandomArray(9);
 		
+		printArray("Randomized: ", array, 0, array.length - 1, array.length - 1); 
 		sort(array, true);
+		printArray("finished: ", array, 0, 0, 0); 
 		
 	}
 
