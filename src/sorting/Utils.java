@@ -121,5 +121,15 @@ public class Utils {
 		 }
 		 return shuffle(array);
 	}
+
 	
+	public static void printArray(int[] array) {
+		String spacer = "";
+		for (int i = 0; i < array.length; i++) {
+			System.out.format("%s%d", spacer, array[i]);
+			spacer = " ";
+		}
+		System.out.println();
+	}
+
 }

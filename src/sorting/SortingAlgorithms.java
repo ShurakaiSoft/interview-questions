@@ -3,21 +3,23 @@ package sorting;
 public class SortingAlgorithms {
 
 	public static int[] selectionSort(int[] array, boolean ascendingOrder) {
-		int lengthLessOne = array.length - 1;
-		int minValue;
-		int minIndex;
-		
-		for (int i = 0; i < lengthLessOne; i++) {
-			minValue = array[i];
-			minIndex = i;
-			for (int j = i + 1; j < array.length; j++) {
-				if (Utils.compareOrder(minValue, array[j], ascendingOrder) == false) {
-					minValue = array[j];
-					minIndex = j;
+		if (array != null && array.length > 1) {
+			int lengthLessOne = array.length - 1;
+			int minValue;
+			int minIndex;
+			
+			for (int i = 0; i < lengthLessOne; i++) {
+				minValue = array[i];
+				minIndex = i;
+				for (int j = i + 1; j < array.length; j++) {
+					if (Utils.compareOrder(minValue, array[j], ascendingOrder) == false) {
+						minValue = array[j];
+						minIndex = j;
+					}
 				}
-			}
-			if (minIndex != i) {
-				Utils.swap(array, i, minIndex);
+				if (minIndex != i) {
+					Utils.swap(array, i, minIndex);
+				}
 			}
 		}
 		return array;
@@ -32,15 +34,14 @@ public class SortingAlgorithms {
 	}
 
 	public static int[] insertionSort(int[] array, boolean ascendingOrder) {
-		if (array == null || array.length < 2) {
-			return array;
-		}
-		for (int i = 1; i < array.length; i++) {
-			for (int j = i; j >= 1; j--) {
-				if (Utils.compareOrder(array[j], array[j - 1], ascendingOrder)) {
-					Utils.swap(array, j, j - 1);
-				} else {
-					break;
+		if (array != null && array.length > 1) {
+			for (int i = 1; i < array.length; i++) {
+				for (int j = i; j >= 1; j--) {
+					if (Utils.compareOrder(array[j], array[j - 1], ascendingOrder)) {
+						Utils.swap(array, j, j - 1);
+					} else {
+						break;
+					}
 				}
 			}
 		}
@@ -84,6 +85,18 @@ public class SortingAlgorithms {
 		return HeapUtils.heapSort(array, false);
 	}
 
+	public static int[] quickSortAscending(int[] array) {
+		return QuickSort.sort(array, true);
+	}
+	
+	public static int[] quickSortDescending(int[] array) {
+		return QuickSort.sort(array, false);
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * @param args
@@ -91,18 +104,10 @@ public class SortingAlgorithms {
 	public static void main(String[] args) {
 		int[] array = Utils.createRandomArray(10);
 
-		printArray(array);
+		Utils.printArray(array);
 		bubbleSortDescending(array);
-		printArray(array);
+		Utils.printArray(array);
 	}
 	
-	private static void printArray(int[] array) {
-		String spacer = "";
-		for (int i = 0; i < array.length; i++) {
-			System.out.format("%s%d", spacer, array[i]);
-			spacer = " ";
-		}
-		System.out.println();
-	}
 
 }
