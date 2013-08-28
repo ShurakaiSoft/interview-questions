@@ -79,10 +79,10 @@ public class SortingAlgorithms {
 	}
 	
 	public static int[] heapSortAscending(int[] array) {
-		return HeapUtils.heapSort(array, true);
+		return HeapSort.heapSort(array, true);
 	}
 	public static int[] heapSortDescending(int[] array) {
-		return HeapUtils.heapSort(array, false);
+		return HeapSort.heapSort(array, false);
 	}
 
 	public static int[] quickSortAscending(int[] array) {
@@ -93,21 +93,4 @@ public class SortingAlgorithms {
 		return QuickSort.sort(array, false);
 	}
 	
-	
-	
-	
-	
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		int[] array = Utils.createRandomArray(10);
-
-		Utils.printArray(array);
-		bubbleSortDescending(array);
-		Utils.printArray(array);
-	}
-	
-
 }

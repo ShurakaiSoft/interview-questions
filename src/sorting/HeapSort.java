@@ -1,6 +1,6 @@
 package sorting;
 
-public class HeapUtils {
+public class HeapSort {
 
 	public static int[] heapSort(int[] array, boolean ascendingOrder) {
 		if (array != null && array.length > 1) {
@@ -72,16 +72,16 @@ public class HeapUtils {
 
 	
 	/**
-	 * visual test
+	 * quick visual test
 	 * 
 	 * @param argv
 	 */
 	public static void main(String[] argv) {
 		int array[] = { 3, 7, 2, 4, 9, 1, 5, 6 };
 		
-		HeapUtils.print(array);
-		HeapUtils.heapSort(array, true);
-		HeapUtils.print(array);
+		HeapSort.print(array);
+		HeapSort.heapSort(array, true);
+		HeapSort.print(array);
 		System.out.println(Utils.isAscendingSorted(array));
 	}
 	

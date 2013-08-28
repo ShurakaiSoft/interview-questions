@@ -3,38 +3,32 @@ package sorting;
 public class QuickSort {
 
 	public static int[] sort(int[] array, boolean ascendingOrder) {
-		if (array != null && array.length > 1) {
+		if (array != null) {
 			sortPartition(array, 0, array.length - 1, ascendingOrder);
 		}
 		return array;
 	}
 	
-	
 	public static void sortPartition(int[] array, int startIndex, int endIndex, boolean ascendingOrder) {
-		// choose a pivot
-		int pivot = chooseRandomPivotValue(array, startIndex, endIndex);
-		int i = startIndex;
-		int j = endIndex;
-		
-		while (true) {
-			while (Utils.compareOrder(array[i], pivot, ascendingOrder) && i < j) {
-				i++;
-			}
-			while (Utils.compareOrder(array[j], pivot, !ascendingOrder) && i < j) {
-				j--;
-			}
-			if (i == j) {
-				i = (i > startIndex) ? i--: i;
-				j = (j < endIndex) ? j++: j;
-				if (i - startIndex > 1) {
-					sortPartition(array, startIndex, i, ascendingOrder);
+		if (array != null && (endIndex - startIndex) > 1) {
+			int pivot = chooseRandomPivotValue(array, startIndex, endIndex);
+			int i = startIndex;
+			int j = endIndex;
+			
+			while (true) {
+				while (Utils.compareOrder(array[i], pivot, ascendingOrder) && i < j) {
+					i++;
 				}
-				if (endIndex - j > 1) {
-					sortPartition(array, j, endIndex, ascendingOrder);
+				while (Utils.compareOrder(array[j], pivot, !ascendingOrder) && i < j) {
+					j--;
 				}
-				return;
-			} else {
-				Utils.swap(array, i, j);
+				if (i == j) {
+					sortPartition(array, startIndex, i--, ascendingOrder);
+					sortPartition(array, j++, endIndex, ascendingOrder);
+					return;
+				} else {
+					Utils.swap(array, i, j);
+				}
 			}
 		}
 	}

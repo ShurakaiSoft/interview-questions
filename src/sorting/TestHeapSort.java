@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestHeapUtils {
+public class TestHeapSort {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -23,7 +23,7 @@ public class TestHeapUtils {
 		array[0] = 4;
 		array[1] = 6;
 		array[2] = 1;
-		HeapUtils.heapify(array, 0, false);
+		HeapSort.heapify(array, 0, false);
 		assertTrue(array[0] == 6);
 		assertTrue(array[1] == 4);
 	}
@@ -35,7 +35,7 @@ public class TestHeapUtils {
 		array[0] = 4;
 		array[1] = 1;
 		array[2] = 6;
-		HeapUtils.heapify(array, 0, false);
+		HeapSort.heapify(array, 0, false);
 		assertTrue(array[0] == 6);
 		assertTrue(array[2] == 4);
 	}
@@ -47,7 +47,7 @@ public class TestHeapUtils {
 		array[0] = 6;
 		array[1] = 4;
 		array[2] = 1;
-		HeapUtils.heapify(array, 0, false);
+		HeapSort.heapify(array, 0, false);
 		assertTrue(array[0] == 6);
 		assertTrue(array[1] == 4);
 		assertTrue(array[2] == 1);
@@ -57,7 +57,7 @@ public class TestHeapUtils {
 	public void testHeapifyArray() {
 		int array[] = {3,7,2,4,9,1,5,6};
 		
-		HeapUtils.heapArray(array, false);
+		HeapSort.heapArray(array, false);
 		assertTrue(array[0] == 9);
 		assertTrue(array[1] == 7);
 		assertTrue(array[2] == 5);
@@ -72,9 +72,9 @@ public class TestHeapUtils {
 	public void testHeapSort() {
 		int array[] = {3,7,2,4,9,1,5,6};
 		
-		HeapUtils.print(array);
-		HeapUtils.heapSort(array, true);
-		HeapUtils.print(array);
+		HeapSort.print(array);
+		HeapSort.heapSort(array, true);
+		HeapSort.print(array);
 		assertTrue(Utils.isAscendingSorted(array));
 	}
 }

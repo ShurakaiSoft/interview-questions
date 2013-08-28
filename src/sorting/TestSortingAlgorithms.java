@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestSortingAlgorithms {
-	static final int SIZE = 100000;
+	static final int SIZE = 1000;
 	
 	@Test
 	public void testSelectionSort() {
