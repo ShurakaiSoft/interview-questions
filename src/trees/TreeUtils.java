@@ -4,6 +4,35 @@ import java.util.Random;
 
 public class TreeUtils {
 
+	public static class Node {
+		public Node left;
+		public Node right;
+		public int data;
+
+		public static boolean compare(Node lhs, Node rhs) {
+			// search each node in trees Depth first.
+			if (lhs == null) {
+				return (rhs == null) ? true : false;
+			} else {
+				if (rhs == null) {
+					return false;
+				}
+			}
+			if (lhs.data == rhs.data) {
+				if (compare(lhs.left, rhs.left)) {
+					return compare(lhs.right, rhs.right);
+		        } else {
+		        	return false;
+		        }
+			} else {
+				return false;
+			}
+		}
+	}
+	
+	
+	
+	
 	/**
 	 * Creates and fill an array of the requested size with two digit integers.
 	 * 
